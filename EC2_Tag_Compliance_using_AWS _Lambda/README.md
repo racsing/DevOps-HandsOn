@@ -1,7 +1,40 @@
-<h1 align="left">DevOps</h1>
+## EC2 Tag Compliance using AWS Lambda
 
-<div align="left">
-<img alt="ShellScript" src="https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white" /><img alt="Grafana" src="https://img.shields.io/badge/Grafana-F2F4F9?style=for-the-badge&logo=grafana&logoColor=orange&labelColor=F2F4F9" /><img alt="Ansible" src="https://img.shields.io/badge/Ansible-000000?style=for-the-badge&logo=ansible&logoColor=white" /><img alt="Docker" src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white" /><img alt="Python" src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue" /><img alt="Linux" src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" /><img alt="AWS" src="https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" /><img alt="Git" src="https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white" /><img alt="Jenkins" src="https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=Jenkins&logoColor=white" />
-</div> 
+### Requirements:</br>
+  A) Creation of EventBridge Rule</br>
+  B) Creation of IAM Role with necessary permissions</br>
+  C) Creation of Lambda function</br>
+  D) SeS Email verification</br>
+  E) EC2 servers</br>
 
-#### I put my DevOps projects work Here :)
+### Assumptions:</br>
+  A) Considered running instances only for checking the tags compliance</br>
+  B) Default Region selected - US West (N. California) us-west-1</br>
+  C) Considered that case of tags will match exactly, Hence not performed extra manipulation on them.</br>
+  D) Considered that CreatedBy tag will always be present (already mentioned in the problem statement).</br>
+  
+### Steps: </br>
+  A) EventBridge Rule: Created a CloudWatch Events Rule That Triggers on a Schedule of 1 hours. </br>
+  
+  <img width="300" alt="Screenshot 2022-05-28 at 16 09 01" src="https://user-images.githubusercontent.com/96699659/170821978-2cf54a04-6785-43de-84ce-00d0ea7c625d.png"></br>
+  
+  B) IAM Role: Created an iam role to provide necessary permissions to lambda such as, ec2 and ses.</br>
+  
+  <img width="300" alt="Screenshot 2022-05-28 at 16 17 37" src="https://user-images.githubusercontent.com/96699659/170822469-12c2d269-25f5-4879-bae1-e4aec7833840.png"></br>
+ 
+  C) SES: Verification of emails is necessary to send email through Amazon SES.</br>
+  
+  <img width="300" alt="Screenshot 2022-05-28 at 16 19 43" src="https://user-images.githubusercontent.com/96699659/170822414-f17e6371-c8f8-45ab-86a8-881fd3b176ac.png"></br>
+  
+  D) Lambda function: Created a lambda by uploading the required python script and attaching necessary roles and polices.</br>
+  
+  <img width="300" alt="Screenshot 2022-05-28 at 16 42 19" src="https://user-images.githubusercontent.com/96699659/170823126-b35b05e9-a4dd-4e68-8974-d734e80bdeff.png"></br>
+  
+  E) EC2 servers: To test the script for tag compliance launced two ec2's, one server with missing environment tag.</br>
+  
+  <img align="left" width="300" alt="Screenshot 2022-05-28 at 16 33 11" src="https://user-images.githubusercontent.com/96699659/170822964-8cb9995a-22fd-4d70-a181-8154e261a262.png"><img align="" width="300" alt="Screenshot 2022-05-28 at 16 33 16" src="https://user-images.githubusercontent.com/96699659/170822966-a0761d8f-16ca-404c-94c4-df73797ec30f.png">
+
+  
+
+  
+  
